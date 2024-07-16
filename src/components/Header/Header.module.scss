@@ -1,0 +1,31 @@
+  .header{
+    display: flex;
+    justify-content: end;
+    padding: 20px 10px 20px 0;
+    .iconBox {
+      
+      top: 20px;
+      right: 50px;
+      color: rgba($color: #fff, $alpha: .8);
+      font-size: 22px;
+      display: flex;
+  
+      .iconItem {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+        margin: 0 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: rgba($color: #000000, $alpha: .1);
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+ 
