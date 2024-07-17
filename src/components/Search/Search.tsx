@@ -31,8 +31,6 @@ function Search() {
           placeholder="请输入搜索词"
           allowClear
           onSearch={onSearch}
-
-          style={{ maxWidth: 700,padding:'0 30px' }}
           addonBefore={
             <Select defaultValue={searchType} onChange={onTypeChange}>
               {
