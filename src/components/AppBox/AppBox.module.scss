@@ -1,0 +1,10 @@
+.appBox{
+  max-width: 1350px;
+  // margin: 80px auto;
+  --icon-size:60px;
+  --icon-gap-y:30px;
+  --icon-gap-x:30px;
+  --app-radius:16px;
+  flex: 1;
+  min-height: 0;
+}

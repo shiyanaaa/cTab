@@ -1,4 +1,4 @@
-import HeaderStyle from  './Header.module.scss'
+import Style from  './Header.module.scss'
 
 function Header() {
 
@@ -7,19 +7,19 @@ function Header() {
     <>
 
 
-      <div className={HeaderStyle.header}>
-        <div className={HeaderStyle.iconBox}>
-          <div className={HeaderStyle.iconItem}>
+      <div className={Style.header}>
+        <div className={Style.iconBox}>
+          <div className={Style.iconItem}>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icon-eye"></use>
             </svg>
           </div>
-          <div className={HeaderStyle.iconItem}>
+          <div className={Style.iconItem}>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icon-keybord"></use>
             </svg>
           </div>
-          <div className={HeaderStyle.iconItem}>
+          <div className={Style.iconItem}>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icon-menu"></use>
             </svg>

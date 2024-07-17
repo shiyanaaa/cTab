@@ -1,4 +1,4 @@
-import SearchStyle from './Search.module.scss'
+import Style from './Search.module.scss'
 import { Input, Select } from 'antd';
 const { Option } = Select;
 
@@ -25,14 +25,14 @@ function Search() {
   }
   return (
     <>
-      <div className={SearchStyle.search}>
+      <div className={Style.search}>
         <Search
           size="large"
           placeholder="请输入搜索词"
           allowClear
           onSearch={onSearch}
 
-          style={{ maxWidth: 600 }}
+          style={{ maxWidth: 600,padding:'0 30px' }}
           addonBefore={
             <Select defaultValue={searchType} onChange={onTypeChange}>
               {

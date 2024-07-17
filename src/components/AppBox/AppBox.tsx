@@ -1,11 +1,13 @@
-import './AppBox.scss'
+import Style from './AppBox.module.scss'
 import { onMousewheel, throttleWheelEvent } from '../../tools/tools'
 import { Carousel } from 'antd';
-import { useRef, useState } from 'react';
-import type {CSSProperties} from 'react'
+import { useLayoutEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react'
 import type { CarouselRef } from 'antd/lib/carousel';
+import { appList } from './app';
+import AppItem from '../AppItem/AppItem';
 function AppBox() {
-  const [boxList] = useState([0, 1, 2, 3, 4])
+  const [boxList] = useState(appList)
   const carouselRef = useRef<CarouselRef>(null);
   let index = 0;
   const doMove = (e: WheelEvent) => {
@@ -28,27 +30,42 @@ function AppBox() {
     throttle(e)
 
   })
+  
+  const ref = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+  useLayoutEffect(() => {
+    if(ref.current!==null)
+    setHeight(ref.current.offsetHeight);
+  }, []);
   const contentStyle: CSSProperties = {
     margin: 0,
-    height: '300px',
-    color: '#fff',
-    lineHeight: '300px',
-    textAlign: 'center',
-    background: '#364d79',
+    height:height+'px',
+    display:"grid",
+    gridTemplateColumns:"repeat(auto-fill,var(--icon-size))",
+    gridTemplateRows:"repeat(auto-fill,var(--icon-size))",
+    gridGap:"var(--icon-gap-x) var(--icon-gap-y)",
+    overflow:"hidden",
+    placeContent:"center"
   };
-
   return (
     <>
-      <Carousel infinite ref={carouselRef} dots={false} dotPosition="left" >
-        {
-          boxList.map(item => {
-            return <div key={item} >
-              <h3 style={contentStyle}>{item}</h3>
-            </div>
-          })
-        }
+      <div className={Style.appBox} ref={ref}>
+        <Carousel ref={carouselRef} dots={false} dotPosition='left' adaptiveHeight>
+          {
+            boxList.map(item => {
+              return <div key={item.name} >
+                <div style={contentStyle}>
+                  {item.list.map(i=>{
+                    return <AppItem data={i} key={i.name}/>
+                  })}
+                </div>
+              </div>
+            })
+          }
 
-      </Carousel>
+        </Carousel>
+      </div>
+
 
 
     </>
