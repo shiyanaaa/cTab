@@ -32,7 +32,7 @@ function Search() {
           allowClear
           onSearch={onSearch}
 
-          style={{ maxWidth: 600,padding:'0 30px' }}
+          style={{ maxWidth: 700,padding:'0 30px' }}
           addonBefore={
             <Select defaultValue={searchType} onChange={onTypeChange}>
               {
