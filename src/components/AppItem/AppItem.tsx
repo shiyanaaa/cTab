@@ -22,7 +22,7 @@ function AppBox(props: { data: appType }) {
   return (
     <>
       {contextHolder}
-      <div onClick={onclick} className={`${Style.appItem} app-size-${data.width}-${data.height}`} style={getStyle()}>
+      <div onClick={onclick} className={`${Style.appItem} ${Style['app-size-'+data.width+'-'+data.height]}`} style={getStyle()}>
         <div className={`${Style.appIcon}`} >
           <img className={Style.appIconImg} src={data.icon} alt={data.name} />
         </div>

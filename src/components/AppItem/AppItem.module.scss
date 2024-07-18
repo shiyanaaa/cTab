@@ -2,38 +2,59 @@
   color: #fff;
   text-align: center;
   cursor: pointer;
-  &.app-size-1-1 {
-    grid-column: span 1;
-    grid-row: span 1;
-    width: calc(var(--icon-size)* 4 + var(--icon-gap-y)* 3);
-    height: calc(var(--icon-size)* 2 + var(--icon-gap-x));
+
+  @for $i from 1 to 5 {
+    @for $j from 1 to 5 {
+      &.app-size-#{$i}-#{$j} {
+        grid-column: span #{$i};
+        grid-row: span #{$j};
+        width: calc(var(--icon-size)* #{$i});
+        height: calc(var(--icon-size)* #{$j});
+        @if $i > 1 {
+          width: calc(var(--icon-size)* #{$i} + var(--icon-gap-y)* (#{$i} - 1))
+        } @else  {
+          width: var(--icon-size);
+        } 
+        @if $j > 1 {
+          height: calc(var(--icon-size)* #{$j} + var(--icon-gap-x)* (#{$j} - 1))
+        } @else  {
+          height: var(--icon-size);
+        } 
+      }
+    }
   }
+
   .appIcon {
     background-color: var(--background);
-    width: var(--icon-size);
-    height: var(--icon-size);
+    width: 100%;
+    height: 100%;
     border-radius: var(--app-radius);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    .appIconImg{
+
+    .appIconImg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      
+      object-fit: contain;
+
     }
   }
-  .appName{
-    width: var(--icon-size);
+
+  .appName {
+    width: 100%;
     margin-top: 6px;
     text-align: center;
-    
+
     font-size: 12px;
     line-height: 1.1;
-    overflow: hidden;  /*超出部分隐藏*/
-    white-space: nowrap;  /*禁止换行*/
-    text-overflow: ellipsis; /*省略号*/
+    overflow: hidden;
+    /*超出部分隐藏*/
+    white-space: nowrap;
+    /*禁止换行*/
+    text-overflow: ellipsis;
+    /*省略号*/
   }
-  
+
 }

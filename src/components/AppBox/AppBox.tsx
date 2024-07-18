@@ -45,7 +45,8 @@ function AppBox() {
     gridTemplateRows:"repeat(auto-fill,var(--icon-size))",
     gridGap:"var(--icon-gap-x) var(--icon-gap-y)",
     overflow:"hidden",
-    placeContent:"center"
+    placeContent:"center",
+    gridAutoFlow:"dense"
   };
   return (
     <>

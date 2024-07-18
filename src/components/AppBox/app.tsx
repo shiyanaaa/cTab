@@ -17,8 +17,8 @@ export const appList: pageType[] = [
   {
     name: "主页", icon: "", list: [
       {
-        "width": 1,
-        "height": 1,
+        "width": 2,
+        "height": 2,
         "name": "爱淘宝",
         "type": "link",
         "background": "#eb6f2d",
@@ -26,7 +26,7 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/taobao.svg"
       },
       {
-        "width": 1,
+        "width": 2,
         "height": 1,
         "name": "京东商城",
         "type": "link",
@@ -35,7 +35,7 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/jd.svg"
       },
       {
-        "width": 1,
+        "width": 3,
         "height": 1,
         "name": "天猫精选",
         "type": "link",
@@ -45,7 +45,7 @@ export const appList: pageType[] = [
       },
       {
         "width": 1,
-        "height": 1,
+        "height": 3,
         "name": "即时设计",
         "type": "link",
         "background": "#cf3d35",
@@ -53,8 +53,8 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/jsdesign.svg"
       },
       {
-        "width": 1,
-        "height": 1,
+        "width": 2,
+        "height": 3,
         "name": "小红书",
         "type": "link",
         "background": "#ff2442",
@@ -152,8 +152,8 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/iqiyi.svg"
       },
       {
-        "width": 1,
-        "height": 1,
+        "width": 4,
+        "height": 4,
         "name": "抖音",
         "type": "link",
         "background": "#1c0b1a",
@@ -161,8 +161,8 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/douyin.svg"
       },
       {
-        "width": 1,
-        "height": 1,
+        "width": 3,
+        "height": 3,
         "name": "哔哩哔哩",
         "type": "link",
         "background": "#fe65a6",
@@ -179,8 +179,8 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/itab.svg"
       },
       {
-        "width": 1,
-        "height": 1,
+        "width": 3,
+        "height": 2,
         "name": "知乎",
         "type": "link",
         "background": "#0c6dfe",
@@ -252,7 +252,7 @@ export const appList: pageType[] = [
       },
       {
         "width": 1,
-        "height": 1,
+        "height": 2,
         "name": "网易云音乐",
         "type": "link",
         "background": "#fe1816",
@@ -1117,8 +1117,8 @@ export const appList: pageType[] = [
         "icon": "https://files.codelife.cc/icons/steam.svg"
       },
       {
-        "width": 1,
-        "height": 1,
+        "width": 4,
+        "height": 4,
         "name": "抖音",
         "type": "link",
         "background": "#1c0b1a",
