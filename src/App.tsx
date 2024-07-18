@@ -11,16 +11,11 @@ import { getData } from './tools/tools'
 import { setAppList,setCurrentIdByIndex } from './store/appSlice'
 function App() {
   const dispatch = useDispatch();
-  const init=()=>{
-    console.log(2)
-    const data=getData()
-    console.log(data)
-    dispatch(setAppList(data))
-    dispatch(setCurrentIdByIndex(0))
-  }
-  useEffect(()=>init);
+  
   useEffect(()=>{
     console.log(1)
+    dispatch(setAppList(getData()))
+    dispatch(setCurrentIdByIndex(0))
   });
   return (
     <>
