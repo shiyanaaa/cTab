@@ -1,11 +1,14 @@
+import { useRef } from "react"
+import { appList, pageType } from "./app"
 
-export const throttleWheelEvent = (func: (e:WheelEvent)=>void , time: number) => {
-  let prevTime = 0;
-  return (params:WheelEvent) => {
+
+export const useThrottle = (func: (e: WheelEvent) => void, time: number) => {
+  const prevTime = useRef<number>(0);
+  return (params: WheelEvent) => {
     const nowTime = Date.now();
-    if (nowTime - prevTime >= time) {
+    if (nowTime - prevTime.current >= time) {
       func(params)
-      prevTime = nowTime
+      prevTime.current = nowTime
     }
   }
 }
@@ -14,4 +17,10 @@ export const onMousewheel = (func: (e: WheelEvent) => void) => {
     document.addEventListener('wheel', func, false);
   }
 
+}
+export const getData = (): pageType[] => {
+  const lists = localStorage.getItem("appList")
+  if (lists) return JSON.parse(lists) as pageType[]
+  localStorage.setItem("appList", JSON.stringify(appList))
+  return appList
 }

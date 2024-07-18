@@ -1,4 +1,4 @@
-  .sidebar{
+  .sidebar {
     display: flex;
     justify-content: center;
     position: fixed;
@@ -8,5 +8,46 @@
     height: 100vh;
     width: 50px;
     z-index: 10;
+    color: rgba($color: #FFFFFF, $alpha: .6);
+    font-size: 20px;
+    flex-direction: column;
+
+    .center {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      padding: 20px 0;
+      .centerItem{
+        width: 100%;
+        cursor: pointer;
+        &.current{
+          background-color: #ffffff26;
+        }
+        .centerText {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          font-size: 12px;
+          text-align: center;
+        }
+      }
+
+      
+    }
+
+    .bottom {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .iconItem {
+      text-align: center;
+      margin: 5px 0;
+      cursor: pointer;
+    }
   }
- 

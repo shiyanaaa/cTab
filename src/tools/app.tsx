@@ -8,6 +8,7 @@ export interface appType {
   height: number
 }
 export interface pageType {
+  id:number,
   name: string,
   icon: string,
   list: appType[]
@@ -15,9 +16,9 @@ export interface pageType {
 
 export const appList: pageType[] = [
   {
-    name: "主页", icon: "", list: [
+    id:1,name: "主页", icon: "icon-menu", list: [
       {
-        "width": 2,
+        "width": 3,
         "height": 2,
         "name": "爱淘宝",
         "type": "link",
@@ -262,7 +263,7 @@ export const appList: pageType[] = [
     ]
   },
   {
-    name: "编程", icon: "", list: [
+    id:2,name: "编程", icon: "icon-code", list: [
       {
         "width": 1,
         "height": 1,
@@ -446,7 +447,7 @@ export const appList: pageType[] = [
     ]
   },
   {
-    name: "设计", icon: "", list: [
+    id:3,name: "设计", icon: "icon-des", list: [
       {
         "width": 1,
         "height": 1,
@@ -630,7 +631,7 @@ export const appList: pageType[] = [
     ]
   },
   {
-    name: "产品", icon: "", list: [
+    id:4,name: "产品", icon: "icon-p", list: [
       {
         "width": 1,
         "height": 1,
@@ -805,7 +806,7 @@ export const appList: pageType[] = [
     ]
   },
   {
-    name: "AI", icon: "", list: [
+    id:5,name: "AI", icon: "icon-ai", list: [
       {
         "width": 1,
         "height": 1,
@@ -1043,7 +1044,7 @@ export const appList: pageType[] = [
     ]
   },
   {
-    name: "摸鱼", icon: "", list: [
+    id:6,name: "摸鱼", icon: "icon-keybord", list: [
       {
         "width": 1,
         "height": 1,

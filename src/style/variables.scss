@@ -1,0 +1,40 @@
+$breakpoints: (
+  "phone": (
+    320px,
+    480px,
+  ),
+  "pad": (
+    481px,
+    768px,
+  ),
+  "notebook": (
+    769px,
+    1024px,
+  ),
+  "pc": (
+    1025px,
+    1200px,
+  ),
+  // 大屏
+  "tv": 1201px,
+);
+// 混合
+@mixin respond-to($breakname) {
+  // map-get函数可以拿到上面定义的map数组中的值
+  $bp: map-get($breakpoints, $breakname);
+  // type-of用于判断上面的键是否是数组/列表类型
+  @if type-of($bp) == "list" {
+    $min: nth($bp, 1); // 拿到设备尺寸的最小值, 列表中的第一个值
+    $max: nth($bp, 2); // 拿到设备尺寸的最大值, 列表中的第二个值
+    // >= 最小值  and  <= 最大值
+    @media (min-width: $min) and (max-width: $max) {
+      // 类似于vue中的插槽，在此处挖一个坑，外面可以往里面传入不同的css样式
+      // 比如：下面代码示例中传入的是heigth的值
+      @content;
+    }
+  } @else {
+    @media (min-width: $bp) {
+      @content;
+    }
+  }
+}
