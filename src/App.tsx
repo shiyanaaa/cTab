@@ -18,6 +18,9 @@ function App() {
     dispatch(setCurrentIdByIndex(0))
   }
   useEffect(()=>init);
+  useEffect(()=>{
+    console.log(1)
+  });
   return (
     <>
 
