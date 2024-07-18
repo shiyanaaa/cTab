@@ -1,5 +1,5 @@
 import Style from './AppItem.module.scss'
-import type { appType } from '../AppBox/app'
+import type { appType } from '../../tools/app'
 import { message } from 'antd';
 function AppBox(props: { data: appType }) {
   const [messageApi, contextHolder] = message.useMessage();
