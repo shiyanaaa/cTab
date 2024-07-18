@@ -12,7 +12,9 @@ import { setAppList,setCurrentIdByIndex } from './store/appSlice'
 function App() {
   const dispatch = useDispatch();
   const init=()=>{
-    dispatch(setAppList(getData()))
+    const data=getData()
+    console.log(data)
+    dispatch(setAppList(data))
     dispatch(setCurrentIdByIndex(0))
   }
   useEffect(()=>init);
