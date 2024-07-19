@@ -28,7 +28,7 @@
     transform: scale(.9);
   }
   .appIcon {
-    background-color: var(--background);
+    background-color: var(--background,#fff);
     width: 100%;
     height: 100%;
     border-radius: var(--app-radius);
@@ -36,7 +36,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
     .appIconImg {
       width: 100%;
       height: 100%;

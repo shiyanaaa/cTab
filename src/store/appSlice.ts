@@ -20,11 +20,15 @@ export const appSlice = createSlice({
       state.currentIndex=action.payload;
       state.currentId=state.appList[action.payload].id;
     },
+    changeItemSize(state,action){
+      state.appList[state.currentIndex].list[action.payload.index].height=action.payload.height;
+      state.appList[state.currentIndex].list[action.payload.index].width=action.payload.width;
+    }
     
   },
 });
 
 // 为每个 case reducer 函数生成 Action creators
-export const { setAppList,setCurrentId,setCurrentIdByIndex } = appSlice.actions;
+export const { setAppList,setCurrentId,setCurrentIdByIndex,changeItemSize } = appSlice.actions;
 
 export default appSlice.reducer;

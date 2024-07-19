@@ -18,11 +18,14 @@ export const setting = createSlice({
     },
     setContent(state,action){
       state.content=action.payload;
+    },
+    close(state){
+      state.position.show=false;
     }
   },
 });
 
 // 为每个 case reducer 函数生成 Action creators
-export const { setPosition,setContent } = setting.actions;
+export const { setPosition,setContent,close } = setting.actions;
 
 export default setting.reducer;

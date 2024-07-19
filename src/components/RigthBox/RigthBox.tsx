@@ -3,7 +3,8 @@ import Style from './RigthBox.module.scss'
 import { RootState } from '../../store';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPosition } from '../../store/rightBox'
+import { close } from '../../store/rightBox'
+import { changeItemSize } from '../../store/appSlice';
 
 function RigthBox() {
   const rowList = [1, 2, 3, 4]
@@ -25,25 +26,24 @@ function RigthBox() {
   }
   const onBlur = () => {
 
-    dispatch(setPosition({
-      show: false,
-      top: 0,
-      left: 0,
-      index: -1
-    }))
+    dispatch(close())
   }
   useEffect(() => {
     if (position.show && boxRef.current !== null)
       boxRef.current.focus()
   }, [position])
   const onclick = (index: number) => {
-    dispatch(setPosition({
-      show: false,
-      top: 0,
-      left: 0,
-      index: -1
-    }))
+    dispatch(close())
     console.log(index)
+  }
+  const changeSize=(width:number,height:number)=>{
+    
+    dispatch(changeItemSize({
+      width,
+      height,
+      index: position.index
+    }))
+    dispatch(close())
   }
   return (
     <>
@@ -78,7 +78,7 @@ function RigthBox() {
                         return <div
                           className={`${Style.tag}  ${`${current?.width}x${current?.height}` === `${row}x${col}` ? Style.active : ''}`}
                           key={`${row}x${col}`}
-
+                          onClick={()=>changeSize(row,col)}
                         >
                           {`${row}x${col}`}
                         </div>
