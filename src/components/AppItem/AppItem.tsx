@@ -47,7 +47,7 @@ function AppBox(props: { data: appType, index: number }) {
         name: "删除",
         type: "delete",
         icon: "#icon-shanchu"
-      
+
       }
 
     ] as MenuType[]))
@@ -58,7 +58,9 @@ function AppBox(props: { data: appType, index: number }) {
       {contextHolder}
       <div onContextMenu={onContextMenu} onClick={onclick} className={`${Style.appItem} ${Style['app-size-' + data.width + '-' + data.height]}`} style={getStyle()}>
         <div className={`${Style.appIcon}`} >
-          <img className={Style.appIconImg} src={data.icon} alt={data.name} />
+          <div className={Style.appIconImg} style={{ backgroundImage: `url(${data.icon})` }} >
+
+          </div>
         </div>
         <div className={Style.appName}>{data.name}</div>
       </div>

@@ -7,6 +7,7 @@
   --icon-gap-y: 30px;
   --icon-gap-x: 30px;
   --app-radius: 16px;
+  --icon-transition-duration:.3s;
   flex: 1;
   min-height: 0;
   width: 100%;
@@ -14,6 +15,8 @@
   box-sizing: border-box;
   overflow: hidden;
   transition: all .3s;
+  user-select: none;
+  transition: all ease-in-out 0.25s;
   &.showApp{
     flex: .5;
     .inner{
@@ -31,6 +34,7 @@
   @include respond-to("phone") {
     --icon-size: 50px;
     --icon-gap-y: 15px;
+    --icon-gap-x: 15px;
   --app-radius: 8px;
   }
   .CarouselItem{
@@ -43,5 +47,6 @@
     place-content: start center;
     grid-auto-flow: dense;
     padding: 10px 0;
+    transition: all ease-in-out 0.25s;
   }
 }

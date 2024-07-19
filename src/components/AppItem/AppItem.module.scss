@@ -3,14 +3,14 @@
   text-align: center;
   cursor: pointer;
   transform: scale(1);
+  width: calc(var(--icon-size) + var(--icon-gap-y));
+  height: calc(var(--icon-size) + var(--icon-gap-x));
   transition: all .2s;
   @for $i from 1 to 5 {
     @for $j from 1 to 5 {
       &.app-size-#{$i}-#{$j} {
         grid-column: span #{$i};
         grid-row: span #{$j};
-        width: calc(var(--icon-size)* #{$i});
-        height: calc(var(--icon-size)* #{$j});
         @if $i > 1 {
           width: calc(var(--icon-size)* #{$i} + var(--icon-gap-y)* (#{$i} - 1))
         } @else  {
@@ -39,7 +39,9 @@
     .appIconImg {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
 
     }
   }
