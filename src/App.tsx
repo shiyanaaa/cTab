@@ -10,6 +10,7 @@ import {  useEffect } from 'react'
 import { getData } from './tools/tools'
 import { setAppList,setCurrentIdByIndex } from './store/appSlice'
 import { useDispatch } from 'react-redux'
+import RigthBox from './components/RigthBox/RigthBox'
 function App() {
   const dispatch = useDispatch();
   
@@ -28,7 +29,7 @@ function App() {
         <Search />
         <AppBox />
         </div>
-        
+        <RigthBox />
         
       </div>
 

@@ -2,7 +2,8 @@
   color: #fff;
   text-align: center;
   cursor: pointer;
-
+  transform: scale(1);
+  transition: all .2s;
   @for $i from 1 to 5 {
     @for $j from 1 to 5 {
       &.app-size-#{$i}-#{$j} {
@@ -23,7 +24,9 @@
       }
     }
   }
-
+  &:active{
+    transform: scale(.9);
+  }
   .appIcon {
     background-color: var(--background);
     width: 100%;

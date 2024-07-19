@@ -65,8 +65,8 @@ function AppBox() {
                 return <div key={item.name} >
                   <div className={Style.CarouselItem} style={{ height: height + 'px' }}>
 
-                    {item.list.map(i => {
-                      return <AppItem data={i} key={i.name} />
+                    {item.list.map((i,index) => {
+                      return <AppItem data={i} index={index} key={i.name} />
                     })}
                   </div>
                 </div>

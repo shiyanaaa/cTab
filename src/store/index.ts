@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import appSlice from './appSlice';
 import setting from './setting';
+import rightBox from './rightBox';
 const store= configureStore({
   reducer: {
     appSlice,
-    setting
+    setting,
+    rightBox
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
