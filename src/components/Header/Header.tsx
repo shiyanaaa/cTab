@@ -1,8 +1,13 @@
 import Style from  './Header.module.scss'
-
+import { setShowApp } from '../../store/setting'
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 function Header() {
-
-
+  const showApp = useSelector((state: RootState) => state.setting.showApp)
+  const dispatch = useDispatch();
+  const changeShowApp=()=>{
+    dispatch(setShowApp(!showApp))
+  }
   return (
     <>
 
@@ -19,7 +24,7 @@ function Header() {
               <use xlinkHref="#icon-keybord"></use>
             </svg>
           </div>
-          <div className={Style.iconItem}>
+          <div className={Style.iconItem} onClick={changeShowApp}>
             <svg className="icon" aria-hidden="true">
               <use xlinkHref="#icon-menu"></use>
             </svg>

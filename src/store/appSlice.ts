@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { pageType } from '../tools/app';
 
 export const appSlice = createSlice({
-  name: 'counter',
+  name: 'appSlice',
   initialState: {
     appList : [] as pageType[],
     currentId:0,

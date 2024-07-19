@@ -9,11 +9,11 @@ import Time from './components/Time/Time'
 import {  useEffect } from 'react'
 import { getData } from './tools/tools'
 import { setAppList,setCurrentIdByIndex } from './store/appSlice'
+import { RootState } from './store';
 function App() {
   const dispatch = useDispatch();
   
   useEffect(()=>{
-    console.log(1)
     dispatch(setAppList(getData()))
     dispatch(setCurrentIdByIndex(0))
   });
@@ -23,14 +23,18 @@ function App() {
       <div className="main">
         <Sidebar />
         <Header />
+        <div className="main-box">
         <Time />
         <Search />
         <AppBox />
+        </div>
+        
+        
       </div>
 
     </>
   )
 }
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default App

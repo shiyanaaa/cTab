@@ -13,15 +13,35 @@
   padding: 0 60px;
   box-sizing: border-box;
   overflow: hidden;
+  transition: all .3s;
+  &.showApp{
+    flex: .5;
+    .inner{
+      display: none;
+    }
+  }
+  .inner{
+    width: 100%;
+    height: 100%;
+  }
   @include respond-to("notebook") {
     --icon-size: 55px;
-  --icon-gap-y: 30px;
-  --icon-gap-x: 30px;
   --app-radius: 8px;
   }
   @include respond-to("phone") {
     --icon-size: 50px;
-
+    --icon-gap-y: 15px;
   --app-radius: 8px;
+  }
+  .CarouselItem{
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, var(--icon-size));
+    grid-template-rows: repeat(auto-fill, var(--icon-size));
+    gap: var(--icon-gap-x) var(--icon-gap-y);
+    overflow: hidden;
+    place-content: start center;
+    grid-auto-flow: dense;
+    padding: 10px 0;
   }
 }
