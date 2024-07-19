@@ -4,9 +4,11 @@ import { message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { setPosition, setContent } from '../../store/rightBox'
 import type { MenuType } from '../../tools/types';
+
 function AppBox(props: { data: appType, index: number }) {
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
+  
   const { data, index } = props;
   const getStyle = () => {
     return {
@@ -39,11 +41,13 @@ function AppBox(props: { data: appType, index: number }) {
         name: "编辑",
         type: "edit",
         icon: "#icon-bianji"
-      }, {
-        name: "批量编辑",
-        type: "allEdit",
-        icon: "#icon-bianji"
-      }, {
+      },
+      //  {
+      //   name: "批量编辑",
+      //   type: "allEdit",
+      //   icon: "#icon-bianji"
+      // },
+       {
         name: "删除",
         type: "delete",
         icon: "#icon-shanchu"

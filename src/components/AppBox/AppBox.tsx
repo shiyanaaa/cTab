@@ -7,6 +7,7 @@ import AppItem from '../AppItem/AppItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setCurrentIdByIndex } from '../../store/appSlice'
+
 function AppBox() {
   const boxList = useSelector((state: RootState) => state.appSlice.appList)
   const index = useSelector((state: RootState) => state.appSlice.currentIndex)
@@ -55,6 +56,7 @@ function AppBox() {
   const afterChange = (index: number) => {
     dispatch(setCurrentIdByIndex(index))
   }
+
   return (
     <>
       <div className={`${Style.appBox} ${!showApp?Style.showApp:""}`} ref={ref} >
@@ -66,7 +68,7 @@ function AppBox() {
                   <div className={Style.CarouselItem} style={{ height: height + 'px' }}>
 
                     {item.list.map((i,index) => {
-                      return <AppItem data={i} index={index} key={i.name} />
+                      return <AppItem  data={i} index={index} key={i.name} />
                     })}
                   </div>
                 </div>

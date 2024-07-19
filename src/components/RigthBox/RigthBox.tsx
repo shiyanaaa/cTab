@@ -4,9 +4,12 @@ import { RootState } from '../../store';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { close } from '../../store/rightBox'
-import { changeItemSize } from '../../store/appSlice';
-
-function RigthBox() {
+import { changeItemSize, deleteAppItem } from '../../store/appSlice';
+import type { appType } from '../../tools/app';
+import { message } from 'antd';
+function RigthBox(props: { onEdit: (data: appType | undefined, index: number) => void }) {
+  const { onEdit } = props;
+  const [messageApi, contextHolder] = message.useMessage();
   const rowList = [1, 2, 3, 4]
   const colList = [1, 2, 3, 4]
   const dispatch = useDispatch();
@@ -33,11 +36,20 @@ function RigthBox() {
       boxRef.current.focus()
   }, [position])
   const onclick = (index: number) => {
+
     dispatch(close())
-    console.log(index)
+    if (content[index].type === 'edit') {
+      onEdit(current, position.index)
+    } else if (content[index].type === 'delete') {
+      dispatch(deleteAppItem(position.index))
+
+    }else{
+      messageApi.warning('该功能暂未开放！');
+    }
+
   }
-  const changeSize=(width:number,height:number)=>{
-    
+  const changeSize = (width: number, height: number) => {
+
     dispatch(changeItemSize({
       width,
       height,
@@ -48,7 +60,7 @@ function RigthBox() {
   return (
     <>
 
-
+      {contextHolder}
       <div ref={boxRef} tabIndex={0} onBlur={onBlur} className={Style.rightBox} style={styles}>
         {
           content.map((item, index) => {
@@ -78,7 +90,7 @@ function RigthBox() {
                         return <div
                           className={`${Style.tag}  ${`${current?.width}x${current?.height}` === `${row}x${col}` ? Style.active : ''}`}
                           key={`${row}x${col}`}
-                          onClick={()=>changeSize(row,col)}
+                          onClick={() => changeSize(row, col)}
                         >
                           {`${row}x${col}`}
                         </div>

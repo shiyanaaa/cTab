@@ -24,12 +24,20 @@ export const appSlice = createSlice({
       state.appList[state.currentIndex].list[action.payload.index].height=action.payload.height;
       state.appList[state.currentIndex].list[action.payload.index].width=action.payload.width;
       setData(state.appList)
+    },
+    updateAppItem(state,action){
+      state.appList[state.currentIndex].list[action.payload.index]=action.payload.data;
+      setData(state.appList)
+    },
+    deleteAppItem(state,action){
+      state.appList[state.currentIndex].list.splice(action.payload,1);
+      setData(state.appList)
     }
     
   },
 });
 
 // 为每个 case reducer 函数生成 Action creators
-export const { setAppList,setCurrentId,setCurrentIdByIndex,changeItemSize } = appSlice.actions;
+export const { setAppList,setCurrentId,setCurrentIdByIndex,changeItemSize,updateAppItem,deleteAppItem } = appSlice.actions;
 
 export default appSlice.reducer;
