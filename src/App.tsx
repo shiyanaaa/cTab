@@ -9,7 +9,7 @@ import Time from './components/Time/Time'
 import {  useEffect } from 'react'
 import { getData } from './tools/tools'
 import { setAppList,setCurrentIdByIndex } from './store/appSlice'
-import { RootState } from './store';
+import { useDispatch } from 'react-redux'
 function App() {
   const dispatch = useDispatch();
   
@@ -35,6 +35,5 @@ function App() {
     </>
   )
 }
-import { useDispatch, useSelector } from 'react-redux'
 
 export default App
