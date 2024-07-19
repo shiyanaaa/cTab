@@ -18,9 +18,12 @@ export const onMousewheel = (func: (e: WheelEvent) => void) => {
   }
 
 }
+export const setData = (data:pageType[])  => {
+  localStorage.setItem("appList", JSON.stringify(data))
+}
 export const getData = (): pageType[] => {
   const lists = localStorage.getItem("appList")
   if (lists) return JSON.parse(lists) as pageType[]
-  localStorage.setItem("appList", JSON.stringify(appList))
+  setData(appList)
   return appList
 }

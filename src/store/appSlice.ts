@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { pageType } from '../tools/app';
-
+import { setData } from '../tools/tools';
 export const appSlice = createSlice({
   name: 'appSlice',
   initialState: {
@@ -23,6 +23,7 @@ export const appSlice = createSlice({
     changeItemSize(state,action){
       state.appList[state.currentIndex].list[action.payload.index].height=action.payload.height;
       state.appList[state.currentIndex].list[action.payload.index].width=action.payload.width;
+      setData(state.appList)
     }
     
   },
