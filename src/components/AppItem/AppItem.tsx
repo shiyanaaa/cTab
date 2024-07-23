@@ -56,6 +56,7 @@ function AppBox(props: { data: appType, index: number }) {
 
     ] as MenuType[]))
     e.preventDefault()
+    e.stopPropagation()
   }
   return (
     <>

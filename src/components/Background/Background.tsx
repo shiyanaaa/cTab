@@ -35,6 +35,7 @@ function Background() {
 
     ] as MenuType[]))
     e.preventDefault()
+    e.stopPropagation()
   }
   
   return (

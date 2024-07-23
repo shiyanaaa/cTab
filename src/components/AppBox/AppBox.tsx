@@ -7,6 +7,8 @@ import AppItem from '../AppItem/AppItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setCurrentIdByIndex } from '../../store/appSlice'
+import { setPosition, setContent } from '../../store/rightBox'
+import type { MenuType } from '../../tools/types';
 function AppBox() {
   const boxList = useSelector((state: RootState) => state.appSlice.appList)
   const index = useSelector((state: RootState) => state.appSlice.currentIndex)
@@ -32,7 +34,39 @@ function AppBox() {
 
   }
   const throttle = useThrottle(doMove, 500)
+  const onContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch(setPosition({ left: e.clientX, top: e.clientY, show: true, index:0 }))
+    dispatch(setContent([
+      {
+        name: "添加图标",
+        type: "addIcon",
+        icon: "#icon-add"
+      },
+      {
+        name: "更换壁纸",
+        type: "changeWallpaper",
+        icon: "#icon-bianji"
+      }, {
+        name: "本地搜索",
+        type: "search",
+        icon: "#icon-bianji"
+      },
+       {
+        name: "立即备份",
+        type: "backup",
+        icon: "#icon-bianji"
+      },
+       {
+        name: "设置",
+        type: "setting",
+        icon: "#icon-setting"
 
+      }
+
+    ] as MenuType[]))
+    e.preventDefault()
+    e.stopPropagation()
+  }
   useEffect(() => {
     if (document.addEventListener) { //火狐使用DOMMouseScroll绑定
       document.addEventListener('wheel', throttle, false);
@@ -58,7 +92,7 @@ function AppBox() {
 
   return (
     <>
-      <div className={`${Style.appBox} ${!showApp?Style.showApp:""}`} ref={ref} >
+      <div className={`${Style.appBox} ${!showApp?Style.showApp:""}`} ref={ref} onContextMenu={onContextMenu}>
       <div className={Style.inner}>
             <Carousel ref={carouselRef} dots={false}  dotPosition='left' adaptiveHeight>
             {
