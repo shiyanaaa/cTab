@@ -29,7 +29,7 @@ function AppBox(props: { data: appType, index: number }) {
     dispatch(setPosition({ left: e.clientX, top: e.clientY, show: true, index }))
     dispatch(setContent([
       {
-        name: "分享",
+        name: "在新建页面打开",
         type: "share",
         icon: "#icon-fenxiang"
       },

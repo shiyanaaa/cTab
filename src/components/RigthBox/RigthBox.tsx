@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import Style from './RigthBox.module.scss'
 import { RootState } from '../../store';
-import { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { close } from '../../store/rightBox'
-import { changeItemSize, deleteAppItem,updateAppItem } from '../../store/appSlice';
+import { changeItemSize, deleteAppItem, updateAppItem, addAppItem } from '../../store/appSlice';
 import type { appType } from '../../tools/app';
 import { message } from 'antd';
-import { Modal, Form, Input, ColorPicker, Upload } from 'antd';
-
+import { Modal, Form, Input, ColorPicker, Upload, Button } from 'antd';
+import { getIconByUrl } from '../../api/codelife';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Color } from 'antd/es/color-picker'
 type FieldType = {
@@ -32,24 +32,47 @@ function RigthBox() {
     if (!state.appSlice.appList[currentIndex].list[position.index]) return;
     return state.appSlice.appList[currentIndex].list[position.index]
   })
+  const getIcon=()=>{
+    
+    getIconByUrl(formRef.getFieldValue("link")).then(res=>{
+      if(res.status!==200||res.data.code!==200) return;
+      const temp={...form, icon:res.data.data.src,background:res.data.data.backgroundColor} as appType
+      setForm(temp)
+      formRef.setFieldsValue(temp)
+      console.log(formRef.getFieldValue('icon'))
+    })
+  }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form, setForm] = useState<appType>()
   const [loading] = useState(false);
   const [index, setIndex] = useState<number>(0);
+  const [formType, setFormType] = useState<'add' | 'edit'>('add');
   const styles = {
     top: position.top,
     left: position.left,
     display: position.show ? "block" : "none"
   }
   const handleOk = () => {
-    dispatch(updateAppItem({
-      index,
-      data: {
-        ...form,
-        ...formRef.getFieldsValue(),
-        background: form?.background
-      }
-    }))
+    if (formType === "add") {
+      dispatch(addAppItem({
+        data: {
+          ...form,
+          ...formRef.getFieldsValue(),
+          background: form?.background
+        }
+      }))
+    } else {
+      console.log(formRef.getFieldValue('icon'))
+      dispatch(updateAppItem({
+        index,
+        data: {
+          ...form,
+          ...formRef.getFieldsValue(),
+          background: form?.background
+        }
+      }))
+    }
+
     setIsModalOpen(false)
   }
   const handleCancel = () => {
@@ -67,6 +90,7 @@ function RigthBox() {
   }
   const onEdit = (data: appType | undefined, currentIndex: number) => {
     if (!data) return;
+    setFormType("edit")
     setForm(data)
     setIndex(currentIndex)
     formRef.setFieldsValue(data)
@@ -80,6 +104,12 @@ function RigthBox() {
     if (position.show && boxRef.current !== null)
       boxRef.current.focus()
   }, [position])
+  const add = () => {
+    setFormType("add")
+    setForm({} as appType)
+    formRef.setFieldsValue({} as appType)
+    setIsModalOpen(true)
+  }
   const onclick = (index: number) => {
 
     dispatch(close())
@@ -88,7 +118,15 @@ function RigthBox() {
     } else if (content[index].type === 'delete') {
       dispatch(deleteAppItem(position.index))
 
-    } else {
+    }
+    else if (content[index].type === 'share' && current?.link) {
+      window.open(current?.link, "_blank")
+    }
+    else if (content[index].type === 'addIcon') {
+      add()
+    }
+
+    else {
       messageApi.warning('该功能暂未开放！');
     }
 
@@ -161,17 +199,19 @@ function RigthBox() {
           initialValues={{ remember: true }}
           autoComplete="off"
         >
-          <Form.Item<FieldType>
+          <Form.Item
             label="图标名称"
             name="name"
           >
-            <Input />
+            <Input  />
           </Form.Item>
           <Form.Item<FieldType>
             label="图标链接"
             name="link"
+            
           >
-            <Input />
+            <Input  addonAfter={(<Button  type="primary" onClick={getIcon}>获取</Button>)}/>
+            
           </Form.Item>
           <Form.Item<FieldType>
             label="图标颜色"
@@ -182,6 +222,7 @@ function RigthBox() {
           <Form.Item<FieldType>
             label="图标图片"
             name="icon"
+            
           >
             <Upload
               name="avatar"
@@ -189,6 +230,7 @@ function RigthBox() {
               className="avatar-uploader"
               showUploadList={false}
               disabled
+              
               action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
             >
               {
