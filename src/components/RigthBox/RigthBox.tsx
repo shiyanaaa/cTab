@@ -18,6 +18,7 @@ type FieldType = {
   icon?: string;
 };
 function RigthBox() {
+  const key = 'updatable';
   const [formRef] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const rowList = [1, 2, 3, 4]
@@ -33,13 +34,29 @@ function RigthBox() {
     return state.appSlice.appList[currentIndex].list[position.index]
   })
   const getIcon=()=>{
-    
+    messageApi.open({
+      key,
+      type: 'loading',
+      content: '获取图标中',
+    });
     getIconByUrl(formRef.getFieldValue("link")).then(res=>{
       if(res.status!==200||res.data.code!==200) return;
       const temp={...form, icon:res.data.data.src,background:res.data.data.backgroundColor} as appType
       setForm(temp)
       formRef.setFieldsValue(temp)
-      console.log(formRef.getFieldValue('icon'))
+      messageApi.open({
+        key,
+        type: 'success',
+        content: '获取成功',
+        duration: 2,
+      });
+    },()=>{
+      messageApi.open({
+        key,
+        type: 'error',
+        content: '获取失败',
+        duration: 2,
+      });
     })
   }
   const [isModalOpen, setIsModalOpen] = useState(false);
