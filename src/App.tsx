@@ -11,7 +11,7 @@ import { getData } from './tools/tools'
 import { setAppList, setCurrentIdByIndex } from './store/appSlice'
 import { useDispatch } from 'react-redux'
 import RigthBox from './components/RigthBox/RigthBox'
-
+import Background from './components/Background/Background'
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
     <>
 
       <div className="main">
+        <Background />
         <Sidebar />
         <Header />
         <div className="main-box">

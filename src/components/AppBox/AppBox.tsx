@@ -7,7 +7,6 @@ import AppItem from '../AppItem/AppItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { setCurrentIdByIndex } from '../../store/appSlice'
-
 function AppBox() {
   const boxList = useSelector((state: RootState) => state.appSlice.appList)
   const index = useSelector((state: RootState) => state.appSlice.currentIndex)
