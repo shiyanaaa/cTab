@@ -50,18 +50,18 @@ function AppBox() {
       setHeight(ref.current.offsetHeight);
   }, []);
   useEffect(() => {
-    if (carouselRef.current)
+    if (carouselRef.current){
       carouselRef.current.goTo(index)
+    }
+      
   }, [index]);
-  const afterChange = (index: number) => {
-    dispatch(setCurrentIdByIndex(index))
-  }
+  
 
   return (
     <>
       <div className={`${Style.appBox} ${!showApp?Style.showApp:""}`} ref={ref} >
       <div className={Style.inner}>
-            <Carousel ref={carouselRef} dots={false} afterChange={afterChange} dotPosition='left' adaptiveHeight>
+            <Carousel ref={carouselRef} dots={false}  dotPosition='left' adaptiveHeight>
             {
               boxList.map(item => {
                 return <div key={item.name} >
